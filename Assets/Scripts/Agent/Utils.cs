@@ -6,6 +6,16 @@ namespace BinPickingAI
 {
     public static class Utils
     {
+        private static int onlineDataID = 0;
+        public static void SaveOnlineData(Texture2D img, float graspability, int success)
+        {
+            byte[] imgBytes = img.EncodeToPNG();
+            string imgPath = Path.Combine(Application.persistentDataPath, "OnlineData", $"{onlineDataID}_{graspability}_{success}.png");
+            string path = $"OnlineData/{onlineDataID}_{graspability}_{success}.png";
+            File.WriteAllBytes(path, imgBytes);
+
+            onlineDataID++;
+        }
         private static RenderTexture rt = new RenderTexture(1280, 736, 16);
         public static Texture2D GetTexture2D(Camera cam)
         {
@@ -111,27 +121,6 @@ namespace BinPickingAI
             }
             return closest;
         }
-        // public static float GetZ(int x, int y, Camera depthCamera)
-        // {
-        //     Vector3 worldPoint = Utils.GetDepthTexture(depthCamera);
-        //     float DepthValue = 1 - Depth.GetPixel(x, y).r;
-        //     //float DepthValue = Depth.GetPixel(x, y).r;
-        //     float zValue = depthCamera.nearClipPlane / (1.0f - DepthValue * (1.0f - depthCamera.nearClipPlane / depthCamera.farClipPlane));
-
-        //     Object.Destroy(Depth);
-        //     return zValue;
-        // }
-        // public static Vector3 GetWorldXYZv3(float[,] output, int id, Camera cam)
-        // {
-        //     int x_ = ((int)output[id, 0] + (int)output[id, 2]) / 2;
-        //     int y_ = 736 - ((int)output[id, 1] + (int)output[id, 3]) / 2;
-
-        //     float z_ = Utils.GetZ(x_, y_, cam);
-        //     int a = (cam.pixelWidth - 736) / 2;
-        //     int b = (cam.pixelHeight - 736) / 2;
-        //     Vector3 WorldXYZ = cam.ScreenToWorldPoint(new Vector3(x_ + a, y_ - b, z_));
-        //     return WorldXYZ;
-        // }
         public static List<Texture2D> GetCrop2D(Texture2D inputTexture, float[,] output)
         {
             List<Texture2D> croppedTextures = new List<Texture2D>();
@@ -163,21 +152,8 @@ namespace BinPickingAI
                 croppedTxt.SetPixels(inputTexture.GetPixels(cropX1, cropY1, 120, 120));
                 croppedTxt.Apply();
                 croppedTextures.Add(croppedTxt);
-                SaveTextureAsPNG(croppedTxt, $"Cropped_{i}.png");
             }
             return croppedTextures;
-        }
-        private static void SaveTextureAsPNG(Texture2D texture, string filePath)
-        {
-            byte[] pngData = texture.EncodeToPNG();
-            if (pngData != null)
-            {
-                File.WriteAllBytes(filePath, pngData);
-            }
-            else
-            {
-                Debug.LogError("Failed to encode texture to PNG.");
-            }
         }
     }
 }

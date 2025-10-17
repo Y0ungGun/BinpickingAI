@@ -11,6 +11,11 @@ using Unity.MLAgents.Actuators;
 namespace BinPickingAI
 {
     [System.Serializable]
+    public class GraspWrenchSpace
+    {
+        public WrenchConvexHull wrenchConvexHull;
+    }
+    [System.Serializable]
     public class CubeSpawn
     {
         public Spawner spawner;
@@ -27,10 +32,12 @@ namespace BinPickingAI
     [System.Serializable]
     public class ControlFlag
     {
+        public bool ShouldEndEpisode = false;
         public bool ReadyToObserve = false;
         public bool isMoving = false;
         public bool isClosing = false;
         public bool isGrasping = false;
+        public int? movingStartFrame = null;
     }
     public class Trainer : Agent
     {
@@ -42,14 +49,21 @@ namespace BinPickingAI
         private Vector3 targetXYZ;
         private Camera cam;
         private int AgentID;
+        private Texture2D beforeTarget;
+        private Texture2D currentTarget;
+        private float beforeGraspability;
+        private float currentGraspability;
         public ControlFlag controlFlag;
         public CubeSpawn Cubespawn;
         public VisionModel visionModel;
+        public GraspWrenchSpace graspWrenchSpace;
         
         void Start()
         {
             int.TryParse(transform.parent.gameObject.name.Substring(5), out AgentID);
             cam = transform.parent.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "RGBCam")?.GetComponent<Camera>();
+            beforeTarget = new Texture2D(120, 120, TextureFormat.RGBA32, false);
+            currentTarget = new Texture2D(120, 120, TextureFormat.RGBA32, false);
         }
 
         public override void OnEpisodeBegin()
@@ -62,46 +76,51 @@ namespace BinPickingAI
 
             Texture2D yoloInput = Utils.GetTexture2D(cam);
             float[,] yoloOutput = visionModel.yoloModel.YOLOv11(yoloInput);
-            if (yoloOutput.GetLength(0) == 0)
-            {
-                Destroy(yoloInput);
-                EndEpisode();
-            }
 
             List<Texture2D> cropImgs = Utils.GetCrop2D(yoloInput, yoloOutput);
+            if (cropImgs.Count == 0)
+            {
+                Destroy(yoloInput);
+                controlFlag.ShouldEndEpisode = true;
+                return;
+            }
             float[] graspabilities = visionModel.graspabilityModel.GraspabilityInf(cropImgs);
             int targetIdx = Array.IndexOf(graspabilities, graspabilities.Max());
 
             targetXYZ = Utils.GetTargetXYZ(yoloOutput, targetIdx, cam);
             target = Utils.GetTarget(Cubespawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
-            Texture2D targetImg = cropImgs[targetIdx];
-            float graspability = graspabilities[targetIdx];
 
-            Graphics.Blit(targetImg, visionModel.renderTextureSensorComponent.RenderTexture);
-            SaveImageWithBoundingBoxes(yoloInput, yoloOutput, $"YOLORESULT.png");
+            target.AddComponent<TargetContact>();
+            graspWrenchSpace.wrenchConvexHull.SetTargetContact(target);
+            graspWrenchSpace.wrenchConvexHull.targetContact.SetCollector(graspWrenchSpace.wrenchConvexHull.wrenchManager);
+
+            Graphics.CopyTexture(cropImgs[targetIdx], currentTarget);
+            currentGraspability = graspabilities[targetIdx];
+
+            Graphics.Blit(currentTarget, visionModel.renderTextureSensorComponent.RenderTexture);
 
             Destroy(yoloInput);
             foreach (var img in cropImgs)
             {
                 Destroy(img);
             }
-            Destroy(targetImg);
+            // Destroy(targetImg);
         }
         public override void OnActionReceived(ActionBuffers actions)
         {
             float x = targetXYZ.x + actions.ContinuousActions[0] * 0.1f;
             float y = targetXYZ.y + actions.ContinuousActions[1] * 0.1f;
             float z = targetXYZ.z + actions.ContinuousActions[2] * 0.1f;
-            float rx = actions.ContinuousActions[3] * 30;
+            float rx = actions.ContinuousActions[3] * 20;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
-            float rz = actions.ContinuousActions[5] * 30;
+            float rz = actions.ContinuousActions[5] * 20;
 
             x = targetXYZ.x + Random.Range(-1f, 1f) * 0.1f;
-            y = targetXYZ.y + Random.Range(-1f, 1f) * 0.1f;
+            y = targetXYZ.y -1 * 0.1f;
             z = targetXYZ.z + Random.Range(-1f, 1f) * 0.1f;
-            rx = Random.Range(-1f, 1f) * 30;
+            rx = Random.Range(-1f, 1f) * 20;
             ry = Random.Range(-1f, 1f) * 180 + 90f;
-            rz = Random.Range(-1f, 1f) * 30;
+            rz = Random.Range(-1f, 1f) * 20;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
@@ -120,24 +139,40 @@ namespace BinPickingAI
         }
         void FixedUpdate()
         {
+            if (controlFlag.ShouldEndEpisode)
+            {
+                controlFlag.ShouldEndEpisode = false;
+                Destroy(gripper);
+                EndEpisode();
+                return;
+            }
+            if (!gripper) return;
             if (controlFlag.isMoving)
             {
-                if (handE.jointPosition[0] - (-0.9f) < 0.01f)
+                if (!controlFlag.movingStartFrame.HasValue)
+                {
+                    controlFlag.movingStartFrame = Time.frameCount;
+                }
+                
+                int framesPassed = Time.frameCount - controlFlag.movingStartFrame.Value;
+                bool reachedTarget = Mathf.Abs(handE.jointPosition[0] - (-1.0f)) < 0.01f;
+                bool timeoutReached = framesPassed >= 1000; // 100 frames timeout, adjust as needed
+                
+                if (reachedTarget || timeoutReached)
                 {
                     ArticulationDrive handEdrive = handE.yDrive;
                     handEdrive.driveType = ArticulationDriveType.Target;
-                    handEdrive.target = -0.9f;
+                    handEdrive.target = handE.jointPosition[0];
                     handE.yDrive = handEdrive;
 
                     controlFlag.isMoving = false;
                     controlFlag.isClosing = true;
-                    //Destroy(gripper);
-                    //controlFlag.ReadyToObserve = true;
+                    controlFlag.movingStartFrame = null;
                 }
                 else
                 {
                     ArticulationDrive handEdrive = handE.yDrive;
-                    handEdrive.targetVelocity = 0.2f;
+                    handEdrive.target = -1.0f;
                     handE.yDrive = handEdrive;
                 }
 
@@ -145,13 +180,15 @@ namespace BinPickingAI
             if (controlFlag.isClosing)
             {
                 PincherController pincherController = handE.GetComponentInChildren<PincherController>();
-                pincherController.Close = true;
+
                 if (pincherController.IsClosed())
                 {
                     pincherController.gripState = GripState.Fixed;
                     controlFlag.isClosing = false;
                     controlFlag.isGrasping = true;
                 }
+                
+                pincherController.Close = true;
             }
             if (controlFlag.isGrasping)
             {
@@ -177,6 +214,11 @@ namespace BinPickingAI
         }
         public void CalcReward()
         {
+            float reward = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
+            graspWrenchSpace.wrenchConvexHull.ClearWrench();
+            Debug.Log($"Epsilon Reward: {reward}");
+            
+            SaveData();
             Destroy(gripper);
             Destroy(target);
             controlFlag.ReadyToObserve = true;
@@ -186,93 +228,16 @@ namespace BinPickingAI
                 EndEpisode();
                 controlFlag.ReadyToObserve = false;
             }
-
-        }
-        
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        public void SaveImageWithBoundingBoxes(Texture2D inputTexture, float[,] output, string filePath)
-        {
-            // 2. YOLO 출력값을 사용해 바운딩 박스 그리기
-            DrawBoundingBoxes(inputTexture, output);
-
-            // 3. 결과 이미지를 PNG로 저장
-            SaveTextureAsPNG(inputTexture, filePath);
-
-            Debug.Log($"Image with bounding boxes saved to: {filePath}");
-        }
-        private void DrawBoundingBoxes(Texture2D texture, float[,] output)
-        {
-            int rows = output.GetLength(0); // YOLO 출력의 행 개수 (300)
-            int cols = output.GetLength(1); // YOLO 출력의 열 개수 (6)
-
-            int width = texture.width;
-            int height = texture.height;
-
-            if (cols < 4)
-            {
-                Debug.LogError("Output does not contain enough columns for bounding box coordinates.");
-                return;
-            }
-
-            // 1. 각 바운딩 박스 처리
-            for (int i = 0; i < rows; i++)
-            {
-                if (output[i, 4] < 0.5f) // 신뢰도 임계값 설정
-                    continue;
-                // YOLO 출력값에서 좌표 가져오기 (x1, y1, x2, y2)
-                int x1 = Mathf.RoundToInt(output[i, 0]);
-                int y1 = height - Mathf.RoundToInt(output[i, 1]);
-                int x2 = Mathf.RoundToInt(output[i, 2]);
-                int y2 = height - Mathf.RoundToInt(output[i, 3]);
-
-                
-
-                // 3. 바운딩 박스 그리기
-                DrawRectangle(texture, x1, y2, x2, y1, Color.red);
-            }
-
-            // 4. 텍스처 적용
-            texture.Apply();
         }
 
-        private void DrawRectangle(Texture2D texture, int x1, int y1, int x2, int y2, Color color)
+        public void SaveData()
         {
-            // 상단 선
-            for (int x = x1; x <= x2; x++)
+            if (beforeGraspability != 0)
             {
-                texture.SetPixel(x, y1, color);
+                Utils.SaveOnlineData(beforeTarget, beforeGraspability, 0);
             }
-
-            // 하단 선
-            for (int x = x1; x <= x2; x++)
-            {
-                texture.SetPixel(x, y2, color);
-            }
-
-            // 좌측 선
-            for (int y = y1; y <= y2; y++)
-            {
-                texture.SetPixel(x1, y, color);
-            }
-
-            // 우측 선
-            for (int y = y1; y <= y2; y++)
-            {
-                texture.SetPixel(x2, y, color);
-            }
-        }
-
-        private void SaveTextureAsPNG(Texture2D texture, string filePath)
-        {
-            byte[] pngData = texture.EncodeToPNG();
-            if (pngData != null)
-            {
-                File.WriteAllBytes(filePath, pngData);
-            }
-            else
-            {
-                Debug.LogError("Failed to encode texture to PNG.");
-            }
+            Graphics.CopyTexture(currentTarget, beforeTarget);
+            beforeGraspability = currentGraspability;
         }
     }
 }

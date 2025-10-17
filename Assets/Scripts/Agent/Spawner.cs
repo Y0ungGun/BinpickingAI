@@ -42,7 +42,7 @@ namespace BinPickingAI
             {
                 Destroy(child.gameObject);
             }
-
+            //DeleteGripper();
             for (int i = 0; i < count; i++)
             {
                 SpawnCube();
@@ -67,9 +67,17 @@ namespace BinPickingAI
             renderer.material.color = colors[Random.Range(0, colors.Length)];
             renderer.material.SetFloat("_Smoothness", 0.0f);
 
-            
+
             Rigidbody rb = cube.GetComponent<Rigidbody>();
             rb.useGravity = true;
+        }
+        public void DeleteGripper()
+        {
+            GameObject gripper = GameObject.Find("gripper");
+            if (gripper != null)
+            {
+                Destroy(gripper);
+            }
         }
         public void DeleteOutliers()
         {

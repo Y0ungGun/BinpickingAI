@@ -42,7 +42,7 @@ ArticulationBody:
   m_GameObject: {fileID: 8908958638218423623}
   m_Enabled: 1
   serializedVersion: 5
-  m_Mass: 1000
+  m_Mass: 1
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
@@ -271,8 +271,8 @@ ArticulationBody:
   m_ZDrive:
     lowerLimit: 0
     upperLimit: 0
-    stiffness: 100000
-    damping: 9000
+    stiffness: 1e+10
+    damping: 100000000
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -369,12 +369,12 @@ ArticulationBody:
   m_YDrive:
     lowerLimit: 0
     upperLimit: 0
-    stiffness: 100000
-    damping: 9000
+    stiffness: 100
+    damping: 90
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
-    driveType: 3
+    driveType: 0
   m_ZDrive:
     lowerLimit: 0
     upperLimit: 0
@@ -435,6 +435,8 @@ MonoBehaviour:
   gripSpeed: 3
   gripState: 0
   Close: 0
+  stableFramesRequired: 3
+  gripStabilityEpsilon: 0.002
 --- !u!4 &2725324386178310543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f795b5118c0744de3bcac7a83315a637, type: 3}
@@ -509,8 +511,8 @@ ArticulationBody:
   m_ZDrive:
     lowerLimit: 0
     upperLimit: 0
-    stiffness: 100000
-    damping: 9000
+    stiffness: 1e+10
+    damping: 100000000
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0

@@ -10,6 +10,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Oo]nline[Dd]ata/
 *.log
 
 # MemoryCaptures can get excessive in size.
@@ -64,8 +65,6 @@ sysinfo.txt
 *.unitypackage.meta
 *.app
 
-# Images
-*.png
 
 # Crashlytics generated file
 crashlytics-build.properties
