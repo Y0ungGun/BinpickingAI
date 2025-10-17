@@ -320,9 +320,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 14229750}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 14229749}
     graspabilityModel: {fileID: 14229748}
@@ -764,9 +767,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 243890109}
     numCubes: 10
+    Objects: {fileID: 1905458338}
   visionModel:
     yoloModel: {fileID: 243890113}
     graspabilityModel: {fileID: 243890114}
@@ -1432,7 +1438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &315163245
 Transform:
   m_ObjectHideFlags: 0
@@ -2365,9 +2371,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 419655254}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 419655253}
     graspabilityModel: {fileID: 419655252}
@@ -3279,7 +3288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &609081515
 Transform:
   m_ObjectHideFlags: 0
@@ -3314,7 +3323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &621370433
 Transform:
   m_ObjectHideFlags: 0
@@ -3447,9 +3456,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 638706944}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 638706943}
     graspabilityModel: {fileID: 638706942}
@@ -3640,7 +3652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &650726620
 Transform:
   m_ObjectHideFlags: 0
@@ -4639,7 +4651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &831543084
 Transform:
   m_ObjectHideFlags: 0
@@ -4674,7 +4686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &836708228
 Transform:
   m_ObjectHideFlags: 0
@@ -5685,9 +5697,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1096886585}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1096886584}
     graspabilityModel: {fileID: 1096886583}
@@ -5848,9 +5863,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1180040720}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1180040719}
     graspabilityModel: {fileID: 1180040718}
@@ -6011,9 +6029,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1211700138}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1211700137}
     graspabilityModel: {fileID: 1211700136}
@@ -6569,9 +6590,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1338436460}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1338436459}
     graspabilityModel: {fileID: 1338436458}
@@ -6634,7 +6658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1351986079
 Transform:
   m_ObjectHideFlags: 0
@@ -6767,9 +6791,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1365447294}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1365447293}
     graspabilityModel: {fileID: 1365447292}
@@ -6961,9 +6988,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1383740501}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1383740500}
     graspabilityModel: {fileID: 1383740499}
@@ -7596,9 +7626,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1488950614}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1488950613}
     graspabilityModel: {fileID: 1488950612}
@@ -7692,7 +7725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1545283583
 Transform:
   m_ObjectHideFlags: 0
@@ -7983,7 +8016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1567445265
 Transform:
   m_ObjectHideFlags: 0
@@ -8116,9 +8149,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1614675869}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1614675868}
     graspabilityModel: {fileID: 1614675867}
@@ -8407,9 +8443,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1626102099}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1626102098}
     graspabilityModel: {fileID: 1626102097}
@@ -8847,7 +8886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1658551456
 Transform:
   m_ObjectHideFlags: 0
@@ -9150,9 +9189,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 1695827680}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 1695827679}
     graspabilityModel: {fileID: 1695827678}
@@ -9215,7 +9257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1710169876
 Transform:
   m_ObjectHideFlags: 0
@@ -9250,7 +9292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1730007033
 Transform:
   m_ObjectHideFlags: 0
@@ -9906,7 +9948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1798690553
 Transform:
   m_ObjectHideFlags: 0
@@ -10878,7 +10920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1924349484
 Transform:
   m_ObjectHideFlags: 0
@@ -11297,9 +11339,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 2047407150}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 2047407149}
     graspabilityModel: {fileID: 2047407148}
@@ -11376,7 +11421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7660f1a09643b43b38bf82e15320c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 20
+  timeScale: 5
 --- !u!4 &2063659030
 Transform:
   m_ObjectHideFlags: 0
@@ -11613,9 +11658,12 @@ MonoBehaviour:
   controlFlag:
     ReadyToObserve: 0
     isMoving: 0
+    isClosing: 0
+    isGrasping: 0
   Cubespawn:
     spawner: {fileID: 2096563579}
     numCubes: 10
+    Objects: {fileID: 0}
   visionModel:
     yoloModel: {fileID: 2096563578}
     graspabilityModel: {fileID: 2096563577}
@@ -11786,7 +11834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2138306218
 Transform:
   m_ObjectHideFlags: 0

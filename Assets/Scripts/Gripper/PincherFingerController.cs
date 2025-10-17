@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PincherFingerController : MonoBehaviour
 {
-   
-    public float closedZ; 
 
+    public float closedZ;
     Vector3 openPosition;
     ArticulationBody articulation;
 

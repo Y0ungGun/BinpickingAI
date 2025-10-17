@@ -15,6 +15,7 @@ namespace BinPickingAI
     {
         public Spawner spawner;
         public int numCubes = 1;
+        public GameObject Objects;
     }
     [System.Serializable]
     public class VisionModel
@@ -28,6 +29,8 @@ namespace BinPickingAI
     {
         public bool ReadyToObserve = false;
         public bool isMoving = false;
+        public bool isClosing = false;
+        public bool isGrasping = false;
     }
     public class Trainer : Agent
     {
@@ -56,8 +59,14 @@ namespace BinPickingAI
         public override void CollectObservations(VectorSensor sensor)
         {
             controlFlag.ReadyToObserve = false;
+
             Texture2D yoloInput = Utils.GetTexture2D(cam);
             float[,] yoloOutput = visionModel.yoloModel.YOLOv11(yoloInput);
+            if (yoloOutput.GetLength(0) == 0)
+            {
+                Destroy(yoloInput);
+                EndEpisode();
+            }
 
             List<Texture2D> cropImgs = Utils.GetCrop2D(yoloInput, yoloOutput);
             float[] graspabilities = visionModel.graspabilityModel.GraspabilityInf(cropImgs);
@@ -80,15 +89,20 @@ namespace BinPickingAI
         }
         public override void OnActionReceived(ActionBuffers actions)
         {
-
             float x = targetXYZ.x + actions.ContinuousActions[0] * 0.1f;
             float y = targetXYZ.y + actions.ContinuousActions[1] * 0.1f;
             float z = targetXYZ.z + actions.ContinuousActions[2] * 0.1f;
             float rx = actions.ContinuousActions[3] * 30;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
             float rz = actions.ContinuousActions[5] * 30;
-            y = targetXYZ.y - 0.1f;
-            gripper = SpawnGripper(x, y, z, 30, ry, 30);
+
+            x = targetXYZ.x + Random.Range(-1f, 1f) * 0.1f;
+            y = targetXYZ.y + Random.Range(-1f, 1f) * 0.1f;
+            z = targetXYZ.z + Random.Range(-1f, 1f) * 0.1f;
+            rx = Random.Range(-1f, 1f) * 30;
+            ry = Random.Range(-1f, 1f) * 180 + 90f;
+            rz = Random.Range(-1f, 1f) * 30;
+            gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
             controlFlag.isMoving = true;
@@ -114,22 +128,68 @@ namespace BinPickingAI
                     handEdrive.driveType = ArticulationDriveType.Target;
                     handEdrive.target = -0.9f;
                     handE.yDrive = handEdrive;
-                    
-                    controlFlag.isMoving = false;
 
-                    Destroy(gripper);
-                    controlFlag.ReadyToObserve = true;
+                    controlFlag.isMoving = false;
+                    controlFlag.isClosing = true;
+                    //Destroy(gripper);
+                    //controlFlag.ReadyToObserve = true;
                 }
                 else
                 {
                     ArticulationDrive handEdrive = handE.yDrive;
-                    handEdrive.targetVelocity = 0.1f;
+                    handEdrive.targetVelocity = 0.2f;
+                    handE.yDrive = handEdrive;
+                }
+
+            }
+            if (controlFlag.isClosing)
+            {
+                PincherController pincherController = handE.GetComponentInChildren<PincherController>();
+                pincherController.Close = true;
+                if (pincherController.IsClosed())
+                {
+                    pincherController.gripState = GripState.Fixed;
+                    controlFlag.isClosing = false;
+                    controlFlag.isGrasping = true;
+                }
+            }
+            if (controlFlag.isGrasping)
+            {
+                if (Mathf.Abs(handE.jointPosition[0]) < 0.01f)
+                {
+                    ArticulationDrive handEdrive = handE.yDrive;
+                    handEdrive.driveType = ArticulationDriveType.Target;
+                    handEdrive.target = 0.0f;
+                    handE.yDrive = handEdrive;
+
+                    controlFlag.isGrasping = false;
+                    CalcReward();
+                }
+                else
+                {
+                    ArticulationDrive handEdrive = handE.yDrive;
+                    handEdrive.driveType = ArticulationDriveType.Velocity;
+                    handEdrive.targetVelocity = -0.2f;
                     handE.yDrive = handEdrive;
                 }
 
             }
         }
+        public void CalcReward()
+        {
+            Destroy(gripper);
+            Destroy(target);
+            controlFlag.ReadyToObserve = true;
 
+            if (Cubespawn.Objects.transform.childCount <= 1)
+            {
+                EndEpisode();
+                controlFlag.ReadyToObserve = false;
+            }
+
+        }
+        
+        //////////////////////////////////////////////////////////////////////////////////////////////
         public void SaveImageWithBoundingBoxes(Texture2D inputTexture, float[,] output, string filePath)
         {
             // 2. YOLO 출력값을 사용해 바운딩 박스 그리기

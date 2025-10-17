@@ -18,7 +18,48 @@ public class PincherController : MonoBehaviour
     public GripState gripState = GripState.Fixed;
     public bool Close = false;
 
+    [SerializeField] int stableFramesRequired = 3;           // ex) 2 또는 3
+    [SerializeField] float gripStabilityEpsilon = 0.002f;     // "거의 비슷" 판단 임계값
 
+    Queue<float> _gripSamples = new Queue<float>();
+    int _lastSampledFrame = -1;
+    GripState _lastGripState = GripState.Fixed;
+
+    public bool IsClosed()
+    {
+        // 상태 전환 시(특히 Closing 시작 시) 샘플 초기화
+        if (_lastGripState != gripState)
+        {
+            if (gripState == GripState.Closing)
+            {
+                _gripSamples.Clear();
+                _lastSampledFrame = -1;
+            }
+            _lastGripState = gripState;
+        }
+
+        // 프레임당 한 번만 샘플링
+        if (_lastSampledFrame != Time.frameCount)
+        {
+            _lastSampledFrame = Time.frameCount;
+            float g = CurrentGrip();
+            _gripSamples.Enqueue(g);
+            while (_gripSamples.Count > stableFramesRequired)
+                _gripSamples.Dequeue();
+        }
+
+        if (gripState != GripState.Closing) return false;
+        if (_gripSamples.Count < stableFramesRequired) return false;
+
+        float min = float.MaxValue, max = float.MinValue;
+        foreach (var s in _gripSamples)
+        {
+            if (s < min) min = s;
+            if (s > max) max = s;
+        }
+
+        return (max - min) <= gripStabilityEpsilon;
+    }
 
     void Start()
     {
@@ -33,10 +74,7 @@ public class PincherController : MonoBehaviour
         if (Close)
         {
             gripState = GripState.Closing;
-        }
-        else
-        {
-            gripState = GripState.Opening;
+            Close = false;
         }
     }
 
