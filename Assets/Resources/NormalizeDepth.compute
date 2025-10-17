@@ -1,0 +1,31 @@
+// #pragma kernel CSMain
+
+// RWTexture2D<float> Result; // 정규화된 결과를 읽고 쓰는 것이 가능하도록 하여 연산 결과를 기록하겠다.
+// Texture2D<float> Source; // 원본 RenderTexture를 읽기만 하겠다.
+
+// [numthreads(8, 8, 1)] //x, y, z축 방향 스레드 수
+// void CSMain(uint3 id : SV_DispatchThreadID)
+// {
+//     float depth = Source[id.xy];
+//     // Result[id.xy] = float4(normalizedDepth , normalizedDepth, normalizedDepth, 1.0f);
+//     Result[id.xy] = float4(depth , depth, 0.0f, 0.0f);
+// }
+
+
+#pragma kernel CSMain
+
+RWTexture2D<float> Result;   // 단일 채널 Depth 값을 저장하는 정규화된 결과
+Texture2D<float> Source;     // 원본 Depth Texture (읽기 전용)
+
+[numthreads(8, 8, 1)]  // X, Y 방향 8×8 스레드 블록 실행
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    // 깊이 값 가져오기
+    float depth = Source[id.xy];
+
+    // 깊이 값 정규화 (0~1 범위)
+    float normalizedDepth = saturate(depth); // 깊이 버퍼를 0~1로 제한
+
+    // 정규화된 Depth 값을 Result에 저장 (단일 채널이므로 float 값 사용)
+    Result[id.xy] = normalizedDepth;
+}
