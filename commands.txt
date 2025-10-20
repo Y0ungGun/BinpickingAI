@@ -1,0 +1,3 @@
+mlagents-learn config/custom_ppo.yaml --run-id={training_id} --time-scale=50 --resume
+
+tensorboard --logdir=results/{training_id}

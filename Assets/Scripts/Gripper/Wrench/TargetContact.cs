@@ -11,6 +11,7 @@ namespace BinPickingAI
         public bool isContact = false;
         private Rigidbody rb;
         private float lambda = 1.0f; // 특성 길이(초기값 1.0, Start에서 자동 계산)
+        public bool CollectWrench = false;
 
         public WrenchManager wc;   
         private void Start()
@@ -33,7 +34,7 @@ namespace BinPickingAI
         
         private void OnCollisionStay(Collision collision)
         {
-            if (collision.gameObject.name.Contains("Finger") && wc != null)
+            if (collision.gameObject.name.Contains("Finger") && wc != null && CollectWrench)
             {
                 // 충돌에 사용된 collider의 크기로 lambda 갱신
                 lambda = 1 / collision.collider.bounds.size.magnitude;

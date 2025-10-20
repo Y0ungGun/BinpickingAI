@@ -271,8 +271,8 @@ ArticulationBody:
   m_ZDrive:
     lowerLimit: 0
     upperLimit: 0
-    stiffness: 1e+10
-    damping: 100000000
+    stiffness: 5000
+    damping: 400
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -511,8 +511,8 @@ ArticulationBody:
   m_ZDrive:
     lowerLimit: 0
     upperLimit: 0
-    stiffness: 1e+10
-    damping: 100000000
+    stiffness: 5000
+    damping: 400
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0

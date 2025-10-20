@@ -69,6 +69,7 @@ namespace BinPickingAI
         public override void OnEpisodeBegin()
         {
             Cubespawn.spawner.SpawnCubes(Cubespawn.numCubes);
+            // Cubespawn.spawner.SpawnDebug();
         }
         public override void CollectObservations(VectorSensor sensor)
         {
@@ -82,6 +83,7 @@ namespace BinPickingAI
             {
                 Destroy(yoloInput);
                 controlFlag.ShouldEndEpisode = true;
+                Debug.Log("No objects detected, ending episode.");
                 return;
             }
             float[] graspabilities = visionModel.graspabilityModel.GraspabilityInf(cropImgs);
@@ -114,13 +116,7 @@ namespace BinPickingAI
             float rx = actions.ContinuousActions[3] * 20;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
             float rz = actions.ContinuousActions[5] * 20;
-
-            x = targetXYZ.x + Random.Range(-1f, 1f) * 0.1f;
-            y = targetXYZ.y -1 * 0.1f;
-            z = targetXYZ.z + Random.Range(-1f, 1f) * 0.1f;
-            rx = Random.Range(-1f, 1f) * 20;
-            ry = Random.Range(-1f, 1f) * 180 + 90f;
-            rz = Random.Range(-1f, 1f) * 20;
+            
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
@@ -208,6 +204,7 @@ namespace BinPickingAI
                     handEdrive.driveType = ArticulationDriveType.Velocity;
                     handEdrive.targetVelocity = -0.2f;
                     handE.yDrive = handEdrive;
+                    graspWrenchSpace.wrenchConvexHull.targetContact.CollectWrench = true;
                 }
 
             }
@@ -217,7 +214,25 @@ namespace BinPickingAI
             float reward = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
             graspWrenchSpace.wrenchConvexHull.ClearWrench();
             Debug.Log($"Epsilon Reward: {reward}");
+                        
+            // Log reward to CSV
+            string csvPath = Path.Combine(Application.dataPath, "Logs", "rewards.csv");
+            Directory.CreateDirectory(Path.GetDirectoryName(csvPath));  
             
+            bool fileExists = File.Exists(csvPath);
+            using (StreamWriter writer = new StreamWriter(csvPath, true))
+            {
+                if (!fileExists)
+                {
+                    writer.WriteLine("Deg,Reward");
+                }
+                writer.WriteLine($"{Cubespawn.spawner.RotationInt},{reward}");
+            }
+            if (reward > 0.4)
+            {
+                SetReward(1.0f);
+            }
+
             SaveData();
             Destroy(gripper);
             Destroy(target);
