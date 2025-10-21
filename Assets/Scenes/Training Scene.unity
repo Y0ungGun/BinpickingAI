@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: {fileID: 1905458338}
-  RotationInt: 0
+  RotationInt: 9
 --- !u!114 &243890110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6117,7 +6117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7660f1a09643b43b38bf82e15320c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 10
+  timeScale: 30
 --- !u!4 &2063659030
 Transform:
   m_ObjectHideFlags: 0

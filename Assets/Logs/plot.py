@@ -10,6 +10,7 @@ data = pd.read_csv(file_path)
 data['x'] = data['Deg'] % 90
 x = data['x']
 y = data['Reward']
+y = 2 * y -1 
 
 # Scatter plot 그리기
 plt.figure(figsize=(10, 6))

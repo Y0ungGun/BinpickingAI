@@ -68,8 +68,8 @@ namespace BinPickingAI
 
         public override void OnEpisodeBegin()
         {
-            Cubespawn.spawner.SpawnCubes(Cubespawn.numCubes);
-            // Cubespawn.spawner.SpawnDebug();
+            // Cubespawn.spawner.SpawnCubes(Cubespawn.numCubes);
+            Cubespawn.spawner.SpawnDebug();
         }
         public override void CollectObservations(VectorSensor sensor)
         {
@@ -116,7 +116,7 @@ namespace BinPickingAI
             float rx = actions.ContinuousActions[3] * 20;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
             float rz = actions.ContinuousActions[5] * 20;
-            
+            y = targetXYZ.y - 0.1f;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
@@ -211,7 +211,9 @@ namespace BinPickingAI
         }
         public void CalcReward()
         {
-            float reward = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
+            PincherController pincherController = handE.GetComponentInChildren<PincherController>();
+            float reward =  2 * pincherController.GetGrip() - 1;
+            // float reward = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
             graspWrenchSpace.wrenchConvexHull.ClearWrench();
             Debug.Log($"Epsilon Reward: {reward}");
                         
@@ -228,10 +230,7 @@ namespace BinPickingAI
                 }
                 writer.WriteLine($"{Cubespawn.spawner.RotationInt},{reward}");
             }
-            if (reward > 0.4)
-            {
-                SetReward(1.0f);
-            }
+            SetReward(reward);
 
             SaveData();
             Destroy(gripper);

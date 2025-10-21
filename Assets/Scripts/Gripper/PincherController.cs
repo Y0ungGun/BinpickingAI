@@ -25,6 +25,10 @@ public class PincherController : MonoBehaviour
     int _lastSampledFrame = -1;
     GripState _lastGripState = GripState.Fixed;
 
+    public float GetGrip()
+    {
+        return grip;
+    }
     public bool IsClosed()
     {
         // 상태 전환 시(특히 Closing 시작 시) 샘플 초기화

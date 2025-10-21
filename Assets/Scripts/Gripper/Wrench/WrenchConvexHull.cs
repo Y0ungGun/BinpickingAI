@@ -16,7 +16,7 @@ namespace BinPickingAI
 
         private void Start()
         {
-            
+
         }
         //private void Update()
         //{
@@ -26,10 +26,96 @@ namespace BinPickingAI
         //    }
 
         //}
+        public float GetEpsilonM()
+        {
+            List<Vector3> Moments = wrenchManager.GetAllMoments();
+            
+            List<IMoment> IMoments = new List<IMoment>();
+            for (int i = 0; i < Moments.Count; i++)
+            {
+                IMoments.Add(new IMoment(Moments[i]));
+            }
+
+            var convexHull = ConvexHull.Create(IMoments);
+
+            double epsilon = double.MaxValue;
+            if (convexHull.ErrorMessage != "")
+            {
+                Debug.LogWarning(convexHull.ErrorMessage);
+                return 0f;
+            }
+            foreach (var face in convexHull.Result.Faces)
+            {
+                var normal = CalculateNormalF(face.Vertices.Select(v => v.Position).ToList());
+                var samplePoint = face.Vertices.First().Position;
+                double b = VectorDot(normal, samplePoint);
+
+                double distance = Math.Abs(b / VectorNorm(normal));
+                if (distance < 1e-5)
+                {
+                    continue;
+                }
+                epsilon = Math.Min(epsilon, distance);
+            }
+
+            return (float)epsilon;
+        }
+        public class IMoment : IVertex
+        {
+            public double[] Position { get; set; }
+
+            public IMoment(Vector3 vector)
+            {
+            Position = new double[] { vector.x, vector.y, vector.z };
+            }
+        }
+        public float GetEpsilonF()
+        {
+            List<Vector3> Forces = wrenchManager.GetAllForces();
+            
+            List<IForce> IForces = new List<IForce>();
+            for (int i = 0; i < Forces.Count; i++)
+            {
+                IForces.Add(new IForce(Forces[i]));
+            }
+
+            var convexHull = ConvexHull.Create(IForces);
+
+            double epsilon = double.MaxValue;
+            if (convexHull.ErrorMessage != "")
+            {
+                Debug.LogWarning(convexHull.ErrorMessage);
+                return 0f;
+            }
+            foreach (var face in convexHull.Result.Faces)
+            {
+                var normal = CalculateNormalF(face.Vertices.Select(v => v.Position).ToList());
+                var samplePoint = face.Vertices.First().Position;
+                double b = VectorDot(normal, samplePoint);
+
+                double distance = Math.Abs(b / VectorNorm(normal));
+
+                epsilon = Math.Min(epsilon, distance);
+            }
+
+            return (float)epsilon;
+        }
+        public class IForce : IVertex
+        {
+            public double[] Position { get; set; }
+
+            public IForce(Vector3 vector)
+            {
+            Position = new double[] { vector.x, vector.y, vector.z };
+            }
+        }
+
         public float GetEpsilon()
         {
             List<Vector3> Forces = wrenchManager.GetAllForces();
             List<Vector3> Moments = wrenchManager.GetAllMoments();
+            List<Vector3> Normals = wrenchManager.GetAllNormals();
+            List<Vector3> Contacts = wrenchManager.GetAllContacts();
             // 캐시된 wrench 리스트를 TargetContact에서 받아옴
             List<Wrench> Wrenches = new List<Wrench>();
             for (int i = 0; i < Forces.Count; i++)
@@ -115,7 +201,26 @@ namespace BinPickingAI
 
             return epsilon;
         }
+        private static double[] CalculateNormalF(List<double[]> vertices)
+        {
+            var mat = Matrix<double>.Build.Dense(vertices.Count, 3);
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    mat[i, j] = vertices[i][j];
+                }
+            }
 
+            var origin = mat.Row(0);
+            for (int i = 0; i < mat.RowCount; i++)
+                mat.SetRow(i, mat.Row(i) - origin);
+
+            var svd = mat.Svd(true);
+            Vector<double> normal = svd.VT.Row(svd.VT.RowCount - 1);
+
+            return normal.ToArray();
+        }
 
         private static double[] CalculateNormal(List<double[]> vertices)
         {
