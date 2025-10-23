@@ -116,7 +116,7 @@ namespace BinPickingAI
             float rx = actions.ContinuousActions[3] * 20;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
             float rz = actions.ContinuousActions[5] * 20;
-            y = targetXYZ.y - 0.1f;
+            // y = targetXYZ.y - 0.1f;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
@@ -152,7 +152,7 @@ namespace BinPickingAI
                 
                 int framesPassed = Time.frameCount - controlFlag.movingStartFrame.Value;
                 bool reachedTarget = Mathf.Abs(handE.jointPosition[0] - (-1.0f)) < 0.01f;
-                bool timeoutReached = framesPassed >= 1000; // 100 frames timeout, adjust as needed
+                bool timeoutReached = framesPassed >= 10; 
                 
                 if (reachedTarget || timeoutReached)
                 {

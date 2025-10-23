@@ -29,6 +29,8 @@ namespace BinPickingAI
                 results[i] = outputArray[0];
                 outputTensor.Dispose();
             }
+            
+
             inputTensor.Dispose();
             worker.Dispose();
 
