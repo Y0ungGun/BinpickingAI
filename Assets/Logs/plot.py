@@ -19,4 +19,4 @@ plt.title("Scatter Plot of Quality (x = deg % 90)", fontsize=14)
 plt.xlabel("deg % 90", fontsize=12)
 plt.ylabel("Quality", fontsize=12)
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.show()
+plt.show()set
