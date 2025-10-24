@@ -436,7 +436,7 @@ MonoBehaviour:
   gripState: 0
   Close: 0
   stableFramesRequired: 3
-  gripStabilityEpsilon: 0.002
+  gripStabilityEpsilon: 0.02
 --- !u!4 &2725324386178310543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f795b5118c0744de3bcac7a83315a637, type: 3}

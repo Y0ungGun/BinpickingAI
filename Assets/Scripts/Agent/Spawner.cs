@@ -23,12 +23,12 @@ namespace BinPickingAI
 
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
         }
-        void FixedUpdate()
+        void Update()
         {
             if (spawned)
             {
                 frameCount++;
-                if (frameCount > 50)
+                if (frameCount > 100)
                 {
                     DeleteOutliers();
                     frameCount = 0;

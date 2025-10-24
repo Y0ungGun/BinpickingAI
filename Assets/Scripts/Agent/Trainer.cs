@@ -68,8 +68,8 @@ namespace BinPickingAI
         {
             int.TryParse(transform.parent.gameObject.name.Substring(5), out AgentID);
             cam = transform.parent.GetComponentsInChildren<Transform>().FirstOrDefault(t => t.name == "RGBCam")?.GetComponent<Camera>();
-            beforeTarget = new Texture2D(120, 120, TextureFormat.RGBA32, false);
-            currentTarget = new Texture2D(120, 120, TextureFormat.RGBA32, false);
+            beforeTarget = new Texture2D(150, 150, TextureFormat.RGBA32, false);
+            currentTarget = new Texture2D(150, 150, TextureFormat.RGBA32, false);
         }
 
         public override void OnEpisodeBegin()
@@ -108,6 +108,7 @@ namespace BinPickingAI
 
             targetXYZ = Utils.GetTargetXYZ(yoloOutput, targetIdx, cam);
             target = Utils.GetTarget(Spawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
+            Debug.Log("Target Position: " + targetXYZ.ToString("F4"));
 
             target.AddComponent<TargetContact>();
             graspWrenchSpace.wrenchConvexHull.SetTargetContact(target);
@@ -168,7 +169,7 @@ namespace BinPickingAI
                 
                 int framesPassed = Time.frameCount - controlFlag.movingStartFrame.Value;
                 bool reachedTarget = Mathf.Abs(handE.jointPosition[0] - (-1.0f)) < 0.01f;
-                bool timeoutReached = framesPassed >= 10; 
+                bool timeoutReached = framesPassed >= 500 / Time.timeScale; // 10 when time-scale = 50  500 when time-scale = 1 --> 500 / timescale
                 
                 if (reachedTarget || timeoutReached)
                 {
