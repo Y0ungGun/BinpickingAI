@@ -186,7 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &14229749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &14229750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +244,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 14229749}
     graspabilityModel: {fileID: 14229748}
-    renderTextureSensorComponent: {fileID: 14229747}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &14229752
@@ -520,7 +520,6 @@ GameObject:
   - component: {fileID: 243890109}
   - component: {fileID: 243890113}
   - component: {fileID: 243890114}
-  - component: {fileID: 243890115}
   - component: {fileID: 243890118}
   - component: {fileID: 243890117}
   m_Layer: 0
@@ -588,7 +587,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 243890113}
     graspabilityModel: {fileID: 243890114}
-    renderTextureSensorComponent: {fileID: 243890115}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 243890118}
 --- !u!114 &243890111
@@ -604,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 0
+    VectorObservationSize: 256
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 6
@@ -634,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: d70b8ecf9ef17184bb8e79726b9435f7, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: d70b8ecf9ef17184bb8e79726b9435f7, type: 3}
 --- !u!114 &243890114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,24 +645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
---- !u!114 &243890115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243890107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132e1194facb64429b007ea1edf562d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderTexture: {fileID: 8400000, guid: 4e1b1113546d3784d9182d6b0eeaef90, type: 2}
-  m_SensorName: RenderTextureSensor
-  m_Grayscale: 0
-  m_ObservationStacks: 1
-  m_Compression: 1
+  EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
 --- !u!114 &243890116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,7 +3045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &1096886584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,7 +3059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &1096886585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3120,7 +3103,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 1096886584}
     graspabilityModel: {fileID: 1096886583}
-    renderTextureSensorComponent: {fileID: 1096886582}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &1096886587
@@ -3233,7 +3215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &1180040719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &1180040720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3290,7 +3273,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 1180040719}
     graspabilityModel: {fileID: 1180040718}
-    renderTextureSensorComponent: {fileID: 1180040717}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 243890118}
 --- !u!114 &1180040722
@@ -3690,7 +3672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &1338436459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3703,7 +3686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &1338436460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3747,7 +3730,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 1338436459}
     graspabilityModel: {fileID: 1338436458}
-    renderTextureSensorComponent: {fileID: 1338436457}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &1338436462
@@ -3895,7 +3877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &1365447293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3908,7 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &1365447294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3952,7 +3935,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 1365447293}
     graspabilityModel: {fileID: 1365447292}
-    renderTextureSensorComponent: {fileID: 1365447291}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &1365447296
@@ -4460,7 +4442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &1488950613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4473,7 +4456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &1488950614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4517,7 +4500,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 1488950613}
     graspabilityModel: {fileID: 1488950612}
-    renderTextureSensorComponent: {fileID: 1488950611}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &1488950616
@@ -6200,7 +6182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25930a394c2936a47a191370f16dfc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: bd47e23cdf6b3d049bf74851e6bae83c, type: 3}
+  EncoderPath: {fileID: 0}
+  HeadPath: {fileID: 0}
 --- !u!114 &2096563578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6213,7 +6196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 0da530c562e8ccb43b50a12e0fbc7856, type: 3}
+  YOLOPath: {fileID: 0}
 --- !u!114 &2096563579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6257,7 +6240,6 @@ MonoBehaviour:
   visionModel:
     yoloModel: {fileID: 2096563578}
     graspabilityModel: {fileID: 2096563577}
-    renderTextureSensorComponent: {fileID: 2096563576}
   graspWrenchSpace:
     wrenchConvexHull: {fileID: 0}
 --- !u!114 &2096563581

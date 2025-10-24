@@ -27,7 +27,6 @@ namespace BinPickingAI
     {
         public YOLO yoloModel;
         public Graspability graspabilityModel;
-        public RenderTextureSensorComponent renderTextureSensorComponent;
     }
     [System.Serializable]
     public class ControlFlag
@@ -86,8 +85,8 @@ namespace BinPickingAI
                 Debug.Log("No objects detected, ending episode.");
                 return;
             }
-            float[] graspabilities = visionModel.graspabilityModel.GraspabilityInf(cropImgs);
-            int targetIdx = Array.IndexOf(graspabilities, graspabilities.Max());
+            float[] id_grasp_feature = visionModel.graspabilityModel.GraspabilityInf(cropImgs);
+            int targetIdx = (int) id_grasp_feature[0];
 
             targetXYZ = Utils.GetTargetXYZ(yoloOutput, targetIdx, cam);
             target = Utils.GetTarget(Cubespawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
@@ -97,9 +96,9 @@ namespace BinPickingAI
             graspWrenchSpace.wrenchConvexHull.targetContact.SetCollector(graspWrenchSpace.wrenchConvexHull.wrenchManager);
 
             Graphics.CopyTexture(cropImgs[targetIdx], currentTarget);
-            currentGraspability = graspabilities[targetIdx];
+            currentGraspability = id_grasp_feature[1];
 
-            Graphics.Blit(currentTarget, visionModel.renderTextureSensorComponent.RenderTexture);
+            sensor.AddObservation(id_grasp_feature.Skip(2).ToArray());
 
             Destroy(yoloInput);
             foreach (var img in cropImgs)

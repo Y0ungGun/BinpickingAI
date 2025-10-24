@@ -6,12 +6,12 @@ namespace BinPickingAI
 {
     public class YOLO : MonoBehaviour
     {
-        public ModelAsset modelAsset;
+        public ModelAsset YOLOPath;
         Model yoloModel;
         Worker worker;
         void Start()
         {
-            yoloModel = ModelLoader.Load(modelAsset);
+            yoloModel = ModelLoader.Load(YOLOPath);
             worker = new Worker(yoloModel, BackendType.GPUCompute);
         }
 
