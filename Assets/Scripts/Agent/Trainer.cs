@@ -16,10 +16,17 @@ namespace BinPickingAI
         public WrenchConvexHull wrenchConvexHull;
     }
     [System.Serializable]
-    public class CubeSpawn
+    public class Spawn
     {
+        public enum ObjectType
+        {
+            Cube,
+            Debug,
+            Bolt
+        }
+        public ObjectType objectType;
         public Spawner spawner;
-        public int numCubes = 1;
+        public int numObjs = 1;
         public GameObject Objects;
     }
     [System.Serializable]
@@ -53,7 +60,7 @@ namespace BinPickingAI
         private float beforeGraspability;
         private float currentGraspability;
         public ControlFlag controlFlag;
-        public CubeSpawn Cubespawn;
+        public Spawn Spawn;
         public VisionModel visionModel;
         public GraspWrenchSpace graspWrenchSpace;
         
@@ -67,14 +74,25 @@ namespace BinPickingAI
 
         public override void OnEpisodeBegin()
         {
-            // Cubespawn.spawner.SpawnCubes(Cubespawn.numCubes);
-            Cubespawn.spawner.SpawnDebug();
+            switch(Spawn.objectType)
+            {
+                case Spawn.ObjectType.Cube:
+                    Spawn.spawner.SpawnCubes(Spawn.numObjs);
+                    break;
+                case Spawn.ObjectType.Debug:
+                    Spawn.spawner.SpawnDebug();
+                    break;
+                case Spawn.ObjectType.Bolt:
+                    Spawn.spawner.SpawnBolts(Spawn.numObjs);
+                    break;
+            }
         }
         public override void CollectObservations(VectorSensor sensor)
         {
             controlFlag.ReadyToObserve = false;
 
             Texture2D yoloInput = Utils.GetTexture2D(cam);
+            // Fig // Utils.SaveTextureAsPNG(yoloInput, "RGB.png");
             float[,] yoloOutput = visionModel.yoloModel.YOLOv11(yoloInput);
 
             List<Texture2D> cropImgs = Utils.GetCrop2D(yoloInput, yoloOutput);
@@ -89,7 +107,7 @@ namespace BinPickingAI
             int targetIdx = (int) id_grasp_feature[0];
 
             targetXYZ = Utils.GetTargetXYZ(yoloOutput, targetIdx, cam);
-            target = Utils.GetTarget(Cubespawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
+            target = Utils.GetTarget(Spawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
 
             target.AddComponent<TargetContact>();
             graspWrenchSpace.wrenchConvexHull.SetTargetContact(target);
@@ -115,19 +133,18 @@ namespace BinPickingAI
             float rx = actions.ContinuousActions[3] * 20;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
             float rz = actions.ContinuousActions[5] * 20;
-            // y = targetXYZ.y - 0.1f;
+            y = targetXYZ.y - 0.1f;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
             controlFlag.isMoving = true;
-            //controlFlag.ReadyToObserve = true;
         }
         public GameObject SpawnGripper(float x, float y, float z, float rx, float ry, float rz)
         {
             GameObject gripperPrefab = Resources.Load<GameObject>("Meshes/Root");
 
             Quaternion rotation = Quaternion.Euler(0, 0, rz) * Quaternion.Euler(0, ry, 0) * Quaternion.Euler(0, 0, rx);
-            GameObject root = Instantiate(gripperPrefab, new Vector3(x, y, z) + rotation * Vector3.up * 1.0f, rotation, transform.parent);
+            GameObject root = Instantiate(gripperPrefab, new Vector3(x, y, z) + rotation * Vector3.up * 0.9f, rotation, transform.parent);
             root.name = "gripper";
 
             return root;
@@ -227,7 +244,7 @@ namespace BinPickingAI
                 {
                     writer.WriteLine("Deg,Reward");
                 }
-                writer.WriteLine($"{Cubespawn.spawner.RotationInt},{reward}");
+                writer.WriteLine($"{Spawn.spawner.RotationInt},{reward}");
             }
             SetReward(reward);
 
@@ -236,7 +253,7 @@ namespace BinPickingAI
             Destroy(target);
             controlFlag.ReadyToObserve = true;
 
-            if (Cubespawn.Objects.transform.childCount <= 1)
+            if (Spawn.Objects.transform.childCount <= 1)
             {
                 EndEpisode();
                 controlFlag.ReadyToObserve = false;

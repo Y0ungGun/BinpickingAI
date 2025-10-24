@@ -83,10 +83,10 @@ namespace BinPickingAI
             txt.Apply();
 
             RenderTexture.active = null;
-            //SaveTextureAsPNG(txt, "Depth.png");
+            // Fig// SaveTextureAsPNG(txt, "Depth.png");
 
-            float DepthValue = txt.GetPixel(x_, y_).r;
-            // float DepthValue = 1 - txt.GetPixel(x_, y_).r;
+            // float DepthValue = txt.GetPixel(x_, y_).r;
+            float DepthValue = 1 - txt.GetPixel(x_, y_).r;
             float z_ = depthCamera.nearClipPlane / (1.0f - DepthValue * (1.0f - depthCamera.nearClipPlane / depthCamera.farClipPlane));
             
             resultTexture.Release();
@@ -137,7 +137,7 @@ namespace BinPickingAI
             {
                 if (output[i, 4] < 0.5f) // 신뢰도 임계값 설정
                     continue;
-                Texture2D croppedTxt = new Texture2D(120, 120, TextureFormat.RGBA32, false);
+                Texture2D croppedTxt = new Texture2D(150, 150, TextureFormat.RGBA32, false);
                 // YOLO 출력값에서 좌표 가져오기 (x1, y1, x2, y2)
                 int x_center = Mathf.RoundToInt((output[i, 0] + output[i, 2]) / 2);
                 int y_center = height - Mathf.RoundToInt((output[i, 1] + output[i, 3]) / 2);
@@ -147,14 +147,21 @@ namespace BinPickingAI
                 int x2 = Mathf.RoundToInt(output[i, 2]);
                 int y2 = height - Mathf.RoundToInt(output[i, 3]);
 
-                // x_center, y_center 기준으로 120x120 크롭 영역 계산
-                int cropX1 = Mathf.Clamp(x_center - 60, 0, width - 120);
-                int cropY1 = Mathf.Clamp(y_center - 60, 0, height - 120);
-                croppedTxt.SetPixels(inputTexture.GetPixels(cropX1, cropY1, 120, 120));
+                // x_center, y_center 기준으로 150x150 크롭 영역 계산
+                int cropX1 = Mathf.Clamp(x_center - 75, 0, width - 150);
+                int cropY1 = Mathf.Clamp(y_center - 75, 0, height - 150);
+                croppedTxt.SetPixels(inputTexture.GetPixels(cropX1, cropY1, 150, 150));
                 croppedTxt.Apply();
                 croppedTextures.Add(croppedTxt);
             }
             return croppedTextures;
+        }
+
+        public static void SaveTextureAsPNG(Texture2D texture, string fileName)
+        {
+            byte[] bytes = texture.EncodeToPNG();
+            string path = Path.Combine(Application.dataPath, fileName);
+            File.WriteAllBytes(path, bytes);
         }
     }
 }

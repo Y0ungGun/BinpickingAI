@@ -28,7 +28,7 @@ namespace BinPickingAI
             if (spawned)
             {
                 frameCount++;
-                if (frameCount > 10)
+                if (frameCount > 50)
                 {
                     DeleteOutliers();
                     frameCount = 0;
@@ -53,7 +53,7 @@ namespace BinPickingAI
             cube.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
             cube.transform.position = new Vector3(0.3f, 0.25f, 0.3f);
             cube.transform.rotation = Quaternion.Euler(0, RotationInt, 0);
-            
+
             MeshRenderer renderer = cube.GetComponent<MeshRenderer>();
             Color[] colors = { new Color(0.84f, 0.258f, 0.336f), new Color(0.93f, 0.785f, 0.273f), new Color(0.086f, 0.45f, 0.35f), new Color(0.074f, 0.551f, 0.852f), new Color(0.574f, 0.336f, 0.742f) }; // Purple
             renderer.material.color = colors[Random.Range(0, colors.Length)];
@@ -63,6 +63,22 @@ namespace BinPickingAI
             Rigidbody rb = cube.GetComponent<Rigidbody>();
             rb.useGravity = true;
             RotationInt += 1;
+            spawned = true;
+        }
+        public void SpawnBolts(int count)
+        {
+            foreach (Transform child in Objects.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            
+            for (int i = 0; i < count; i++)
+            {
+                GameObject bolt = Instantiate(Resources.Load<GameObject>("Meshes/Bolt"));
+                bolt.transform.parent = Objects.transform;
+                bolt.transform.position = new Vector3(Random.Range(SpawnRangeMin.x, SpawnRangeMax.x), Random.Range(SpawnRangeMin.y, SpawnRangeMax.y), Random.Range(SpawnRangeMin.z, SpawnRangeMax.z));
+                bolt.transform.rotation = Random.rotation;
+            }
             spawned = true;
         }
         public void SpawnCubes(int count)

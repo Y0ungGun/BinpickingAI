@@ -33,9 +33,9 @@ namespace BinPickingAI
         
         public float[,] ConvertTo2DArray(Tensor<float> tensor)
         {
-            int rows = tensor.shape[1]; // 첫 번째 차원 (300)
-            int cols = tensor.shape[2]; // 두 번째 차원 (6)
-            float[] flatArray = tensor.DownloadToArray(); // 1차원 배열로 다운로드
+            int rows = tensor.shape[1]; 
+            int cols = tensor.shape[2]; 
+            float[] flatArray = tensor.DownloadToArray(); 
 
             float[,] result = new float[rows, cols];
             for (int i = 0; i < rows; i++)
