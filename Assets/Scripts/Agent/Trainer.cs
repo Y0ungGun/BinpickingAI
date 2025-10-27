@@ -7,6 +7,7 @@ using Unity.MLAgents.Sensors;
 using System.IO;
 using System.Collections.Generic;
 using Unity.MLAgents.Actuators;
+using Unity.Mathematics;
 
 namespace BinPickingAI
 {
@@ -108,7 +109,6 @@ namespace BinPickingAI
 
             targetXYZ = Utils.GetTargetXYZ(yoloOutput, targetIdx, cam);
             target = Utils.GetTarget(Spawn.spawner.Objects, targetXYZ.x, targetXYZ.y, targetXYZ.z);
-            Debug.Log("Target Position: " + targetXYZ.ToString("F4"));
 
             target.AddComponent<TargetContact>();
             graspWrenchSpace.wrenchConvexHull.SetTargetContact(target);
@@ -128,13 +128,13 @@ namespace BinPickingAI
         }
         public override void OnActionReceived(ActionBuffers actions)
         {
-            float x = targetXYZ.x + actions.ContinuousActions[0] * 0.1f;
-            float y = targetXYZ.y + actions.ContinuousActions[1] * 0.1f;
+            float x = targetXYZ.x + actions.ContinuousActions[0] * 0.25f;
+            float y = targetXYZ.y + actions.ContinuousActions[1] * 0.25f;
             float z = targetXYZ.z + actions.ContinuousActions[2] * 0.1f;
-            float rx = actions.ContinuousActions[3] * 20;
+            float rx = actions.ContinuousActions[3] * 30;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
-            float rz = actions.ContinuousActions[5] * 20;
-            y = targetXYZ.y - 0.1f;
+            float rz = actions.ContinuousActions[5] * 30;
+            // y = targetXYZ.y - 0.1f;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
             handE = gripper.GetComponentsInChildren<ArticulationBody>().FirstOrDefault(ab => ab.name == "HandE");
 
@@ -229,10 +229,22 @@ namespace BinPickingAI
         public void CalcReward()
         {
             PincherController pincherController = handE.GetComponentInChildren<PincherController>();
-            float reward =  2 * pincherController.GetGrip() - 1;
-            // float reward = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
+            float reward = 2 * pincherController.GetGrip() - 1;
+            
+            reward = Mathf.Clamp(reward, 0, 1);
+            float eps = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
+            if (target.transform.localPosition.y > 0.2)
+            {
+                SetReward(1.0f + reward);
+                Destroy(target);
+            }
+            else
+            {
+                SetReward(0);
+            }
+
             graspWrenchSpace.wrenchConvexHull.ClearWrench();
-            Debug.Log($"Epsilon Reward: {reward}");
+            // Debug.Log($"Epsilon Reward: {reward}");
                         
             // Log reward to CSV
             string csvPath = Path.Combine(Application.dataPath, "Logs", "rewards.csv");
@@ -247,11 +259,9 @@ namespace BinPickingAI
                 }
                 writer.WriteLine($"{Spawn.spawner.RotationInt},{reward}");
             }
-            SetReward(reward);
 
-            SaveData();
+            // SaveData();
             Destroy(gripper);
-            Destroy(target);
             controlFlag.ReadyToObserve = true;
 
             if (Spawn.Objects.transform.childCount <= 1)

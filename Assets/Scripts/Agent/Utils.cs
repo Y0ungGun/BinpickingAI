@@ -85,8 +85,8 @@ namespace BinPickingAI
             RenderTexture.active = null;
             // Fig// SaveTextureAsPNG(txt, "Depth.png");
 
-            // float DepthValue = txt.GetPixel(x_, y_).r;
-            float DepthValue = 1 - txt.GetPixel(x_, y_).r;
+            float DepthValue = txt.GetPixel(x_, y_).r;
+            // float DepthValue = 1 - txt.GetPixel(x_, y_).r;
             float z_ = depthCamera.nearClipPlane / (1.0f - DepthValue * (1.0f - depthCamera.nearClipPlane / depthCamera.farClipPlane));
             
             resultTexture.Release();

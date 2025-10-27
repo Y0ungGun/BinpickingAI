@@ -28,7 +28,7 @@ namespace BinPickingAI
             if (spawned)
             {
                 frameCount++;
-                if (frameCount > 100)
+                if (frameCount > 100/ Time.timeScale)
                 {
                     DeleteOutliers();
                     frameCount = 0;
