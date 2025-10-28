@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &129836348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &129836349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 129836349}
     numObjs: 10
     Objects: {fileID: 1190078842}
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &198827698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &198827699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,7 +1306,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 198827699}
     numObjs: 10
     Objects: {fileID: 1905325656}
@@ -1562,7 +1562,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 243890109}
     numObjs: 10
     Objects: {fileID: 1905458338}
@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &243890114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &243890116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3303,7 +3303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &506561751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3316,7 +3316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &506561752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3354,7 +3354,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 506561752}
     numObjs: 10
     Objects: {fileID: 413342909}
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &573354138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3818,7 +3818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &573354139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3856,7 +3856,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 573354139}
     numObjs: 10
     Objects: {fileID: 288213362}
@@ -4140,7 +4140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &599564460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4153,7 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &599564461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4191,7 +4191,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 599564461}
     numObjs: 10
     Objects: {fileID: 1764940083}
@@ -4612,7 +4612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &682468730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4625,7 +4625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &682468731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4663,7 +4663,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 682468731}
     numObjs: 10
     Objects: {fileID: 97152055}
@@ -4982,6 +4982,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789809736}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &805849819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805849821}
+  - component: {fileID: 805849820}
+  m_Layer: 0
+  m_Name: PythonExecutor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &805849820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805849819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36873bb2bf283c24ba537545e337b24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condaPath: C:\Users\dudrj\anaconda3\Scripts
+  envName: mlagents
+  scriptPath: D:\unityworkspace\BinpickingAI\py\grasp_train.py
+--- !u!4 &805849821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805849819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.109079, y: -2.928289, z: 6.010607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &808591458
 GameObject:
   m_ObjectHideFlags: 0
@@ -6290,7 +6337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &984603613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6303,7 +6350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &984603614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6341,7 +6388,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 984603614}
     numObjs: 10
     Objects: {fileID: 694496363}
@@ -6471,7 +6518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &999337588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6484,7 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &999337589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6522,7 +6569,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 999337589}
     numObjs: 10
     Objects: {fileID: 983505458}
@@ -7207,7 +7254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1065329172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7220,7 +7267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1065329173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7258,7 +7305,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1065329173}
     numObjs: 10
     Objects: {fileID: 580080379}
@@ -7840,7 +7887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1161609034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7853,7 +7900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1161609035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7891,7 +7938,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1161609035}
     numObjs: 10
     Objects: {fileID: 2001890564}
@@ -8654,7 +8701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1241154094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8667,7 +8714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1241154095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8705,7 +8752,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1241154095}
     numObjs: 10
     Objects: {fileID: 1228395222}
@@ -9161,7 +9208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1328226662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9174,7 +9221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1328226663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9212,7 +9259,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1328226663}
     numObjs: 10
     Objects: {fileID: 1648540768}
@@ -9470,7 +9517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1361668515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9483,7 +9530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1361668516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9521,7 +9568,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1361668516}
     numObjs: 10
     Objects: {fileID: 426496468}
@@ -10035,7 +10082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1491337313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10048,7 +10095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1491337314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10086,7 +10133,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1491337314}
     numObjs: 10
     Objects: {fileID: 1495006446}
@@ -10763,7 +10810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1578213260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10776,7 +10823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1578213261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10814,7 +10861,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1578213261}
     numObjs: 10
     Objects: {fileID: 1192706035}
@@ -11211,7 +11258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &1682717160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11224,7 +11271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &1682717161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11262,7 +11309,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 1682717161}
     numObjs: 10
     Objects: {fileID: 843592331}
@@ -13396,7 +13443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &2017250615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13409,7 +13456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &2017250616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13447,7 +13494,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 2017250616}
     numObjs: 10
     Objects: {fileID: 1514922233}
@@ -14182,7 +14229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &2111919212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14195,7 +14242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &2111919213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14233,7 +14280,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 2111919213}
     numObjs: 10
     Objects: {fileID: 1498528320}
@@ -14471,7 +14518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EncoderPath: {fileID: 5022602860645237092, guid: abc2b0f64098a7843ae43734c55f4b00, type: 3}
-  HeadPath: {fileID: 5022602860645237092, guid: ef0e245cc9b09674c90efc80e68fe17e, type: 3}
+  HeadPath: {fileID: 5022602860645237092, guid: 8d7504d866afefe45ae9f1895b7b65b5, type: 3}
 --- !u!114 &2143132530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14484,7 +14531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b2f6905d179a040807a9c39ce887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  YOLOPath: {fileID: 5022602860645237092, guid: a0b5a975d0634024c8ab9a65d08ced42, type: 3}
+  YOLOPath: {fileID: 5022602860645237092, guid: 10bd69dd449d9a74fa3bd3c93492412d, type: 3}
 --- !u!114 &2143132531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14522,7 +14569,7 @@ MonoBehaviour:
     isClosing: 0
     isGrasping: 0
   Spawn:
-    objectType: 0
+    objectType: 2
     spawner: {fileID: 2143132531}
     numObjs: 10
     Objects: {fileID: 871914873}
@@ -14665,3 +14712,4 @@ SceneRoots:
   - {fileID: 1781591082}
   - {fileID: 1656563113219586866}
   - {fileID: 967906217}
+  - {fileID: 805849821}
