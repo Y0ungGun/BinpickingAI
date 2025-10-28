@@ -1,0 +1,47 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 99999,
+                "file_path": "results/MyGrasp251027/My Behavior/My Behavior-99999.onnx",
+                "reward": 17.99945134041356,
+                "creation_time": 1761590606.5621018,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251027/My Behavior/My Behavior-99999.pt"
+                ]
+            },
+            {
+                "steps": 199999,
+                "file_path": "results/MyGrasp251027/My Behavior/My Behavior-199999.onnx",
+                "reward": 18.407612360917128,
+                "creation_time": 1761623703.8021019,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251027/My Behavior/My Behavior-199999.pt"
+                ]
+            },
+            {
+                "steps": 208444,
+                "file_path": "results/MyGrasp251027/My Behavior/My Behavior-208444.onnx",
+                "reward": 18.31773420600664,
+                "creation_time": 1761626740.481694,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251027/My Behavior/My Behavior-208444.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 208444,
+            "file_path": "results/MyGrasp251027/My Behavior.onnx",
+            "reward": 18.31773420600664,
+            "creation_time": 1761626740.481694,
+            "auxillary_file_paths": [
+                "results/MyGrasp251027/My Behavior/My Behavior-208444.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.7.1+cu126"
+    }
+}
