@@ -9,7 +9,7 @@ behaviors:
     checkpoint_interval: 1000
 
     hyperparameters:
-      learning_rate: 5.0e-4
+      learning_rate: 1.0e-3
       batch_size: 512
       buffer_size: 10240
       learning_rate_schedule: linear

@@ -230,13 +230,15 @@ namespace BinPickingAI
         {
             PincherController pincherController = handE.GetComponentInChildren<PincherController>();
             float reward = 2 * pincherController.GetGrip() - 1;
-            
+
             reward = Mathf.Clamp(reward, 0, 1);
+            bool success = false;
             float eps = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
-            if (target.transform.localPosition.y > 0.2)
+            if (target != null && target.transform.localPosition.y > 0.2)
             {
                 SetReward(1.0f + reward);
                 Destroy(target);
+                success = true;
             }
             else
             {
@@ -255,12 +257,20 @@ namespace BinPickingAI
             {
                 if (!fileExists)
                 {
-                    writer.WriteLine("Deg,Reward");
+                    writer.WriteLine("Step,RewardQ,Success");
                 }
-                writer.WriteLine($"{Spawn.spawner.RotationInt},{reward}");
+                if (success)
+                {
+                    writer.WriteLine($"{0},{reward},{1}");
+                }
+                else
+                {
+                    writer.WriteLine($"{0},{0},{0}");
+                }
+                
             }
 
-            // SaveData();
+            SaveData();
             Destroy(gripper);
             controlFlag.ReadyToObserve = true;
 

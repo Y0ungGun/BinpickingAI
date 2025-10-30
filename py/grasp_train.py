@@ -23,8 +23,8 @@ from ultralytics import YOLO
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 save_lock = threading.Lock()
 
-#os.chdir("/home/dudrjs/BinPickingAI")
-os.chdir("D:/unityworkspace/BinpickingAI") # here
+os.chdir("/home/dudrjs/BinpickingAI")
+# os.chdir("D:/unityworkspace/BinpickingAI") # here
 # os.chdir("C:/Users/sms2/Unity_ws/BinpickingAI_new") # here
 current_dir = os.getcwd()
 print(f"Current working directory: {current_dir}")
@@ -164,18 +164,17 @@ def online_learning_from_dir(buffer_size=512, batch_size=64, epochs=10, delete_s
         if loss.item() <= best_loss:
             # FC + Output layerë§Œ ONNXë¡œ ì €ìž¥
             class FCOutputModel(nn.Module):
-                def __init__(self, fc_layer, output_layer):
+                def __init__(self, output_layer):
                     super().__init__()
-                    self.fc = fc_layer
                     self.output = output_layer
                 
                 def forward(self, feature_vec):
-                    x = self.fc(feature_vec)
-                    grasp_prob = torch.sigmoid(self.output(x)).squeeze(1)
+                    x = self.output(feature_vec)
+                    grasp_prob = torch.sigmoid(x).squeeze(1)
                     return grasp_prob
             
-            fc_output_model = FCOutputModel(grasp_model.fc, grasp_model.output).eval()
-            dummy_feature = torch.randn(1, 512, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
+            fc_output_model = FCOutputModel(grasp_model.output).eval()
+            dummy_feature = torch.randn(1, 256, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
             
             torch.onnx.export(
                 fc_output_model,

@@ -6,9 +6,11 @@ namespace BinPickingAI
 {
     public class PythonExecutor : MonoBehaviour
 {
-    public string condaPath = @"C:\Users\dudrj\anaconda3\Scripts"; // adjust path
+    //public string condaPath = @"C:\Users\dudrj\anaconda3\Scripts"; // adjust path
+    public string condaPath = @"/home/dudrjs/anaconda3/Scripts";
     public string envName = "mlagents";
-    public string scriptPath = @"D:\unityworkspace\BinpickingAI\py\grasp_train.py";
+    //public string scriptPath = @"D:\unityworkspace\BinpickingAI\py\grasp_train.py";
+    public string scriptPath = @"py/grasp_train.py";
 
     private Process pythonProcess;
 
@@ -20,7 +22,7 @@ namespace BinPickingAI
     void RunPythonScript()
     {
         ProcessStartInfo psi = new ProcessStartInfo();
-        psi.FileName = "cmd.exe";
+        psi.FileName = "/bin/bash";
         psi.RedirectStandardInput = true;
         psi.RedirectStandardOutput = true;
         psi.RedirectStandardError = true;
@@ -43,6 +45,7 @@ namespace BinPickingAI
         StreamWriter sw = pythonProcess.StandardInput;
         if (sw.BaseStream.CanWrite)
         {
+            sw.WriteLine($"source ~/anaconda3/etc/profile.d/conda.sh");
             sw.WriteLine($"conda activate {envName}");
             sw.WriteLine($"python \"{scriptPath}\"");
         }
