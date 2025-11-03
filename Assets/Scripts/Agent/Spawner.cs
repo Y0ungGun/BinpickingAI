@@ -74,7 +74,7 @@ namespace BinPickingAI
             
             for (int i = 0; i < count; i++)
             {
-                GameObject bolt = Instantiate(Resources.Load<GameObject>("Meshes/Bolt"));
+                GameObject bolt = Instantiate(Resources.Load<GameObject>("Meshes/M12Bolt"));
                 bolt.transform.parent = Objects.transform;
                 bolt.transform.position = new Vector3(Random.Range(SpawnRangeMin.x, SpawnRangeMax.x), Random.Range(SpawnRangeMin.y, SpawnRangeMax.y), Random.Range(SpawnRangeMin.z, SpawnRangeMax.z));
                 bolt.transform.rotation = Random.rotation;
