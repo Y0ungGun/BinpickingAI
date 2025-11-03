@@ -128,8 +128,8 @@ namespace BinPickingAI
         }
         public override void OnActionReceived(ActionBuffers actions)
         {
-            float x = targetXYZ.x + actions.ContinuousActions[0] * 0.25f;
-            float y = targetXYZ.y + actions.ContinuousActions[1] * 0.25f;
+            float x = targetXYZ.x + actions.ContinuousActions[0] * 0.1f;
+            float y = targetXYZ.y + actions.ContinuousActions[1] * 0.1f;
             float z = targetXYZ.z + actions.ContinuousActions[2] * 0.1f;
             float rx = actions.ContinuousActions[3] * 30;
             float ry = actions.ContinuousActions[4] * 180 + 90f;
@@ -237,7 +237,7 @@ namespace BinPickingAI
             if (target != null && target.transform.localPosition.y > 0.2)
             {
                 SetReward(1.0f + reward);
-                Destroy(target);
+                
                 success = true;
             }
             else
@@ -271,6 +271,7 @@ namespace BinPickingAI
             }
 
             SaveData();
+            Destroy(target);
             Destroy(gripper);
             controlFlag.ReadyToObserve = true;
 

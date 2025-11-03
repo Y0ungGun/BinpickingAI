@@ -161,36 +161,34 @@ def online_learning_from_dir(buffer_size=512, batch_size=64, epochs=10, delete_s
             best_loss = float("inf")
 
         os.chdir(current_dir + "/Assets/weights") # here
-        if loss.item() <= best_loss:
-            # FC + Output layerë§Œ ONNXë¡œ ì €ìž¥
-            class FCOutputModel(nn.Module):
-                def __init__(self, output_layer):
-                    super().__init__()
-                    self.output = output_layer
-                
-                def forward(self, feature_vec):
-                    x = self.output(feature_vec)
-                    grasp_prob = torch.sigmoid(x).squeeze(1)
-                    return grasp_prob
+        # FC + Output layerë§Œ ONNXë¡œ ì €ìž¥
+        class FCOutputModel(nn.Module):
+            def __init__(self, output_layer):
+                super().__init__()
+                self.output = output_layer
             
-            fc_output_model = FCOutputModel(grasp_model.output).eval()
-            dummy_feature = torch.randn(1, 256, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
-            
-            torch.onnx.export(
-                fc_output_model,
-                dummy_feature,
-                "grasp_head_bolt.onnx",
-                export_params=True,
-                opset_version=11,
-                do_constant_folding=True,
-                input_names=['feature_vec'],
-                output_names=['grasp_prob'],
-                dynamic_axes={'feature_vec': {0: 'batch_size'},
-                             'grasp_prob': {0: 'batch_size'}}
-            )
-            print(f"New best loss {loss.item():.4f}, FC+Output layers saved to grasp_fc_output.onnx")
-        else:
-            print(f"Loss {loss.item():.4f} (best: {best_loss:.4f})")
+            def forward(self, feature_vec):
+                x = self.output(feature_vec)
+                grasp_prob = torch.sigmoid(x).squeeze(1)
+                return grasp_prob
+        
+        fc_output_model = FCOutputModel(grasp_model.output).eval()
+        dummy_feature = torch.randn(1, 256, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
+        
+        torch.onnx.export(
+            fc_output_model,
+            dummy_feature,
+            "grasp_head_bolt.onnx",
+            export_params=True,
+            opset_version=11,
+            do_constant_folding=True,
+            input_names=['feature_vec'],
+            output_names=['grasp_prob'],
+            dynamic_axes={'feature_vec': {0: 'batch_size'},
+                            'grasp_prob': {0: 'batch_size'}}
+        )
+        print(f"New best loss {loss.item():.4f}, FC+Output layers saved to grasp_fc_output.onnx")
+        
         os.chdir(current_dir)
         for img_file in img_files[:delete_size]:
             try:
