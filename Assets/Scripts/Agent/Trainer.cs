@@ -132,7 +132,7 @@ namespace BinPickingAI
             float y = targetXYZ.y + actions.ContinuousActions[1] * 0.1f;
             float z = targetXYZ.z + actions.ContinuousActions[2] * 0.1f;
             float rx = actions.ContinuousActions[3] * 30;
-            float ry = actions.ContinuousActions[4] * 180 + 90f;
+            float ry = actions.ContinuousActions[4] * 90 + 90f;
             float rz = actions.ContinuousActions[5] * 30;
             // y = targetXYZ.y - 0.1f;
             gripper = SpawnGripper(x, y, z, rx, ry, rz);
