@@ -230,14 +230,14 @@ namespace BinPickingAI
         {
             PincherController pincherController = handE.GetComponentInChildren<PincherController>();
             float reward = 2 * pincherController.GetGrip() - 1;
-
-            reward = Mathf.Clamp(reward, 0, 1);
+            
+            if (reward < 0.7){ reward = 0; }
             bool success = false;
             float eps = 10 * graspWrenchSpace.wrenchConvexHull.GetEpsilon();
             if (target != null && target.transform.localPosition.y > 0.2)
             {
-                SetReward(1.0f + reward);
-                
+                SetReward(1 + reward);
+
                 success = true;
             }
             else

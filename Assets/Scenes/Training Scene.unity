@@ -262,7 +262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &38743454
 Transform:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &74152087
 Transform:
   m_ObjectHideFlags: 0
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 129836349}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1190078842}
   visionModel:
     yoloModel: {fileID: 129836348}
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 243890109}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1905458338}
   visionModel:
     yoloModel: {fileID: 243890113}
@@ -5210,7 +5210,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 506561752}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 413342909}
   visionModel:
     yoloModel: {fileID: 506561751}
@@ -5757,7 +5757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &552159245
 Transform:
   m_ObjectHideFlags: 0
@@ -5908,7 +5908,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 573354139}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 288213362}
   visionModel:
     yoloModel: {fileID: 573354138}
@@ -6092,7 +6092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &585551711
 Transform:
   m_ObjectHideFlags: 0
@@ -6243,7 +6243,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 599564461}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1764940083}
   visionModel:
     yoloModel: {fileID: 599564460}
@@ -6803,7 +6803,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 682468731}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 97152055}
   visionModel:
     yoloModel: {fileID: 682468730}
@@ -7654,7 +7654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &864897553
 Transform:
   m_ObjectHideFlags: 0
@@ -7808,7 +7808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &897329394
 Transform:
   m_ObjectHideFlags: 0
@@ -9916,7 +9916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1033287126
 Transform:
   m_ObjectHideFlags: 0
@@ -10298,7 +10298,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1065329173}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 580080379}
   visionModel:
     yoloModel: {fileID: 1065329172}
@@ -11542,7 +11542,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1161609035}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 2001890564}
   visionModel:
     yoloModel: {fileID: 1161609034}
@@ -12919,7 +12919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1292432899
 Transform:
   m_ObjectHideFlags: 0
@@ -13082,7 +13082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1318589724
 Transform:
   m_ObjectHideFlags: 0
@@ -13361,7 +13361,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1328226663}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1648540768}
   visionModel:
     yoloModel: {fileID: 1328226662}
@@ -13670,7 +13670,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1361668516}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 426496468}
   visionModel:
     yoloModel: {fileID: 1361668515}
@@ -14398,7 +14398,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1491337314}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1495006446}
   visionModel:
     yoloModel: {fileID: 1491337313}
@@ -14525,7 +14525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1499876466
 Transform:
   m_ObjectHideFlags: 0
@@ -14719,7 +14719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1538174771
 Transform:
   m_ObjectHideFlags: 0
@@ -15307,7 +15307,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 1578213261}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1192706035}
   visionModel:
     yoloModel: {fileID: 1578213260}
@@ -16446,7 +16446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1754310695
 Transform:
   m_ObjectHideFlags: 0
@@ -17942,7 +17942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1836534855
 Transform:
   m_ObjectHideFlags: 0
@@ -19051,7 +19051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1918427547
 Transform:
   m_ObjectHideFlags: 0
@@ -19833,7 +19833,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 2017250616}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1514922233}
   visionModel:
     yoloModel: {fileID: 2017250615}
@@ -21016,7 +21016,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 2111919213}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 1498528320}
   visionModel:
     yoloModel: {fileID: 2111919212}
@@ -21433,7 +21433,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 2143132531}
-    numObjs: 10
+    numObjs: 2
     Objects: {fileID: 871914873}
   visionModel:
     yoloModel: {fileID: 2143132530}
