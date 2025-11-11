@@ -2,42 +2,6 @@
     "My Behavior": {
         "checkpoints": [
             {
-                "steps": 7999,
-                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-7999.onnx",
-                "reward": 2.7193671765108087,
-                "creation_time": 1762487767.9709234,
-                "auxillary_file_paths": [
-                    "results/MyGrasp251107/My Behavior/My Behavior-7999.pt"
-                ]
-            },
-            {
-                "steps": 11999,
-                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-11999.onnx",
-                "reward": 3.0172702291995863,
-                "creation_time": 1762489369.5591795,
-                "auxillary_file_paths": [
-                    "results/MyGrasp251107/My Behavior/My Behavior-11999.pt"
-                ]
-            },
-            {
-                "steps": 15999,
-                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-15999.onnx",
-                "reward": 3.2592942433972514,
-                "creation_time": 1762490981.3238595,
-                "auxillary_file_paths": [
-                    "results/MyGrasp251107/My Behavior/My Behavior-15999.pt"
-                ]
-            },
-            {
-                "steps": 19999,
-                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-19999.onnx",
-                "reward": 3.2383157331209915,
-                "creation_time": 1762492598.3920135,
-                "auxillary_file_paths": [
-                    "results/MyGrasp251107/My Behavior/My Behavior-19999.pt"
-                ]
-            },
-            {
                 "steps": 20001,
                 "file_path": "results/MyGrasp251107/My Behavior/My Behavior-20001.onnx",
                 "reward": 3.2383157331209915,
@@ -45,15 +9,51 @@
                 "auxillary_file_paths": [
                     "results/MyGrasp251107/My Behavior/My Behavior-20001.pt"
                 ]
+            },
+            {
+                "steps": 23999,
+                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-23999.onnx",
+                "reward": 12.492644784271077,
+                "creation_time": 1762755519.0579298,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251107/My Behavior/My Behavior-23999.pt"
+                ]
+            },
+            {
+                "steps": 31999,
+                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-31999.onnx",
+                "reward": 13.537122151623034,
+                "creation_time": 1762758484.3833442,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251107/My Behavior/My Behavior-31999.pt"
+                ]
+            },
+            {
+                "steps": 39999,
+                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-39999.onnx",
+                "reward": 13.558195464611053,
+                "creation_time": 1762761453.1653426,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251107/My Behavior/My Behavior-39999.pt"
+                ]
+            },
+            {
+                "steps": 40001,
+                "file_path": "results/MyGrasp251107/My Behavior/My Behavior-40001.onnx",
+                "reward": 13.558195464611053,
+                "creation_time": 1762761453.6598754,
+                "auxillary_file_paths": [
+                    "results/MyGrasp251107/My Behavior/My Behavior-40001.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 20001,
+            "steps": 40001,
             "file_path": "results/MyGrasp251107/My Behavior.onnx",
-            "reward": 3.2383157331209915,
-            "creation_time": 1762492599.0857296,
+            "reward": 13.558195464611053,
+            "creation_time": 1762761453.6598754,
             "auxillary_file_paths": [
-                "results/MyGrasp251107/My Behavior/My Behavior-20001.pt"
+                "results/MyGrasp251107/My Behavior/My Behavior-40001.pt"
             ]
         }
     },

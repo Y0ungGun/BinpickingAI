@@ -14,7 +14,7 @@ behaviors:
       learning_rate_schedule: linear
       beta_schedule: linear
       epsilon_schedule: linear
-    checkpoint_interval: 8000
+    checkpoint_interval: 4000
     network_settings:
       normalize: true
       hidden_units: 256
@@ -38,7 +38,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     even_checkpoints: true
-    max_steps: 40000
+    max_steps: 20000
     time_horizon: 1
     summary_freq: 500
     threaded: false
@@ -69,8 +69,8 @@ checkpoint_settings:
   run_id: MyGrasp251107
   initialize_from: null
   load_model: false
-  resume: true
-  force: false
+  resume: false
+  force: true
   train_model: false
   inference: false
   results_dir: results
