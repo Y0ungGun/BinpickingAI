@@ -30,7 +30,7 @@ current_dir = os.getcwd()
 print(f"Current working directory: {current_dir}")
 
 class GraspabilityModel(nn.Module):
-    def __init__(self, feature_dim=256):
+    def __init__(self):
         super().__init__()
         # ResNet18 êµ¬ì¡°ì™€ ë™ì¼í•˜ê²Œ ìƒì„±
         resnet = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
@@ -38,16 +38,13 @@ class GraspabilityModel(nn.Module):
         resnet.maxpool = nn.Identity()
         self.features = nn.Sequential(*list(resnet.children())[:-1])  # (B, 512, 4, 4)
         self.flatten = nn.Flatten()
-        self.fc = nn.Linear(512, feature_dim)
-        self.output = nn.Linear(feature_dim, 1)  # ë…¸ë“œ 1ê°œì§œë¦¬ ì¶œë ¥ì¸µ ì¶”ê°€
+        self.output = nn.Linear(512, 1)  # ë…¸ë“œ 1ê°œì§œë¦¬ ì¶œë ¥ì¸µ ì¶”ê°€
     
         nn.init.normal_(self.output.weight, mean=0.0, std=0.01)
         nn.init.constant_(self.output.bias, 0.0)
 
         # feature extractorì™€ fcëŠ” freeze + í•™ìŠµ ê°€ëŠ¥í•œ layer ì„¤ì • ì–´ë–»ê²Œ í•  ê²ƒì¸ì§€?
         for param in self.features.parameters():
-            param.requires_grad = False
-        for param in self.fc.parameters():
             param.requires_grad = False
 
         # outputë§Œ í•™ìŠµ ê°€ëŠ¥
@@ -56,8 +53,7 @@ class GraspabilityModel(nn.Module):
 
     def forward(self, x):
         x = self.features(x)
-        x = self.flatten(x)
-        feature_vec = self.fc(x)
+        feature_vec = self.flatten(x)
         grasp_prob = torch.sigmoid(self.output(feature_vec)).squeeze(1)
         return grasp_prob, feature_vec
 
@@ -173,7 +169,7 @@ def online_learning_from_dir(buffer_size=512, batch_size=64, epochs=10, delete_s
                 return grasp_prob
         
         fc_output_model = FCOutputModel(grasp_model.output).eval()
-        dummy_feature = torch.randn(1, 256, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
+        dummy_feature = torch.randn(1, 512, device=device)  # feature extractor ì¶œë ¥ í¬ê¸°
         
         torch.onnx.export(
             fc_output_model,

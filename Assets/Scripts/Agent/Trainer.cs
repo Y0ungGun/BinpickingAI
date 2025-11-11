@@ -270,7 +270,7 @@ namespace BinPickingAI
                 
             }
 
-            SaveData();
+            SaveData(success);
             Destroy(target);
             Destroy(gripper);
             controlFlag.ReadyToObserve = true;
@@ -282,11 +282,18 @@ namespace BinPickingAI
             }
         }
 
-        public void SaveData()
+        public void SaveData(bool success)
         {
             if (beforeGraspability != 0)
             {
-                Utils.SaveOnlineData(beforeTarget, beforeGraspability, 0);
+                if (success == true)
+                {
+                    Utils.SaveOnlineData(beforeTarget, beforeGraspability, 1);
+                }
+                else
+                {
+                    Utils.SaveOnlineData(beforeTarget, beforeGraspability, 0);
+                }
             }
             Graphics.CopyTexture(currentTarget, beforeTarget);
             beforeGraspability = currentGraspability;

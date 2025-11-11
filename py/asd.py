@@ -9,8 +9,8 @@ output_file = r"d:\unityworkspace\BinpickingAI\Assets\Logs\rewards_trimmed.csv"
 # CSV 파일 읽기
 df = pd.read_csv(input_file, header=None)
 
-# 100001번째 행부터 데이터 추출
-df_trimmed = df.iloc[100000:]
+# 뒤에서 200,000개 행 추출
+df_trimmed = df.tail(10000)
 
 # 새로운 CSV 파일로 저장
 df_trimmed.to_csv(output_file, index=False, header=False)

@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 import onnxruntime as ort
-
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 # Example 이미지 경로
 EXAMPLE_IMAGE_DIR = "./py/ref_data"
 
@@ -68,7 +68,8 @@ def load_agent(device):
     if isinstance(device, str):
         device = torch.device(device)
 
-    agent_path = os.path.expanduser("./results/MyGrasp251031/MyBehavior.onnx")
+    agent_path = os.path.expanduser("./results/MyGrasp251107/My Behavior/My Behavior-7999.onnx")
+    # agent_path = os.path.expanduser("./Assets/weights/My Behavior.onnx")
     
     providers = ['CPUExecutionProvider']
     if torch.cuda.is_available() and device.type == 'cuda':
@@ -100,7 +101,7 @@ def run_head_inference(head_session, feature_vector):
     input_dict = {
         'feature_vec': feature_vector.astype(np.float32)
     }
-    print(f"Input dict: {input_dict}")
+    # print(f"Input dict: {input_dict}")
 
     try:
         outputs = head_session.run(None, input_dict)
@@ -154,7 +155,7 @@ def run_onnx_inference(rl_session, feature_vector):
 
     output_dict = dict(zip(output_names, outputs))
 
-    deterministic_continuous_actions = output_dict.get('deterministic_continuous_actions', None)
+    deterministic_continuous_actions = output_dict.get('continuous_actions', None)
     actions = deterministic_continuous_actions.squeeze(0) if deterministic_continuous_actions is not None else None
 
     return actions
@@ -175,6 +176,38 @@ import matplotlib.patches as patches
 from mpl_toolkits.mplot3d import Axes3D
 import math
 import numpy as np
+
+def coord_conv(rx, ry, rz):
+    import numpy as np
+    from scipy.spatial.transform import Rotation as R
+
+    # --- 1. Unity(왼손좌표계, y-up) 기준 회전행렬 ---
+    R_LH = R.from_euler('ZYZ', [rz, ry, rx], degrees=True).as_matrix()
+
+    # --- 2. 좌표축 재배치 (Unity y-up → 현실 z-up)
+    T = np.array([
+        [1, 0, 0],
+        [0, 0, 1],
+        [0, 1, 0]
+    ])
+
+    # --- 3. 왼손 → 오른손 변환 (z축 반전)
+    S = np.diag([1, 1, -1])
+
+    # --- 4. 전체 변환 (좌표 재배치 + 축 반전)
+    R_RH = S @ (T @ R_LH @ T.T) @ S
+
+    # --- ✅ 5. 현실 좌표계 기준 Y축 180도 회전 추가 ---
+    R_y180 = R.from_euler('Y', 180, degrees=True).as_matrix()
+    R_RH = R_y180 @ R_RH
+
+    # --- 6. 오른손 좌표계의 Quaternion ---
+    quat_RH = R.from_matrix(R_RH).as_quat()  # [x, y, z, w]
+    euler_ZYZ = R.from_quat(quat_RH).as_euler('ZYZ', degrees=True)
+    print("Right-handed Quaternion with Y+180°:", quat_RH)
+    print("Right-handed Euler angles (ZYZ) with Y+180°:", euler_ZYZ)
+
+    return euler_ZYZ[0], euler_ZYZ[1], euler_ZYZ[2] 
 
 def visualize_gripper(ax, image_center, yaw_angle, gripper_size=30):
     """
@@ -240,11 +273,12 @@ def visualize_results(image_path, graspability, action):
     
     if action is not None:
         # 액션 값 추출 (a3, a4, a5)
-        a3, a4, a5 = action[3], action[4], action[5]
+        x_offset, y_offset = 10 * action[0], 10 * action[2]
+        a3, a4, a5 = coord_conv(30*action[3], 90*action[4]+90, 30*action[5])
         
         # 이미지 중심에 그리퍼 시각화 (a3, a5 값과 무관하게 항상 시각화)
-        image_center = (image_array.shape[1] // 2, image_array.shape[0] // 2)
-        yaw_angle = a4  # a4가 yaw 각도 (라디안)
+        image_center = (image_array.shape[1] // 2 + x_offset, image_array.shape[0] // 2 + y_offset)
+        yaw_angle = a4 # + 90  # a4가 yaw 각도 (라디안)
         
         # 그리퍼 시각화
         visualize_gripper(ax, image_center, yaw_angle)
@@ -253,15 +287,10 @@ def visualize_results(image_path, graspability, action):
         ax.text(10, 30, f"Action [a3, a4, a5]: [{a3:.3f}, {a4:.3f}, {a5:.3f}]", 
                bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7),
                fontsize=12, color='black')
-        ax.text(10, 60, f"Gripper Yaw: {math.degrees(yaw_angle):.1f}°", 
+        ax.text(10, 60, f"Gripper Yaw: {yaw_angle:.1f}°", 
                bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgreen", alpha=0.7),
                fontsize=10, color='black')
         
-        # a3, a5가 0.1보다 큰 경우 경고 메시지 추가
-        if abs(a3) > 0.1 or abs(a5) > 0.1:
-            ax.text(10, 90, "Warning: a3 or a5 > 0.1", 
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor="orange", alpha=0.7),
-                   fontsize=10, color='black')
     else:
         ax.text(10, 30, "No action available", 
                bbox=dict(boxstyle="round,pad=0.3", facecolor="red", alpha=0.7),
@@ -298,3 +327,4 @@ for image_name in os.listdir(EXAMPLE_IMAGE_DIR):
         
         # 시각화
         visualize_results(image_path, graspability, action)
+
