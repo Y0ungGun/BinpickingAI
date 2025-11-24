@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126323426466996765, guid: 894461588ef5158478f5bf51473cb713, type: 3}
       propertyPath: gripStabilityEpsilon
-      value: 0.02
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8908958638218423623, guid: 894461588ef5158478f5bf51473cb713, type: 3}
       propertyPath: m_Name

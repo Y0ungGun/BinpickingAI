@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7660f1a09643b43b38bf82e15320c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 50
+  timeScale: 2
 --- !u!4 &364379315
 Transform:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: c3783c09cb968ad62a78c181d7274016, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: My Behavior
@@ -630,7 +630,7 @@ MonoBehaviour:
   Spawn:
     objectType: 2
     spawner: {fileID: 0}
-    numObjs: 10
+    numObjs: 3
     Objects: {fileID: 1833461346}
   visionModel:
     yoloModel: {fileID: 1056491114}

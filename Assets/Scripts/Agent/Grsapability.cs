@@ -46,7 +46,7 @@ namespace BinPickingAI
                 GraspabilityTensor.Dispose();
                 FeatureTensor.Dispose();
             }
-            float[] returns = new float[258];
+            float[] returns = new float[514];
 
             int bestId = System.Array.IndexOf(results, results.Max());
             returns[0] = bestId;
